@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mybatis 인터페이스를 붙여야한다 -->
+<mapper namespace="co.mass.mybatis.notice.service.NoticeMapper">
+
+	<select id="noticeSelectList"
+		resultType="co.mass.mybatis.notice.service.NoticeVO">
+		select * from notice order by nid desc
+	</select>
+
+
+	<select id="noticeSelect"
+		resultType="co.mass.mybatis.notice.service.NoticeVO">
+		select * from notice where nid = #{nid}
+	</select>
+
+
+	<insert id="noticeInsert"
+		parameterType="co.mass.mybatis.notice.service.NoticeVO">
+		insert into notice
+		values(b_seq.nextval,#{id},#{name},sysdate,#{title},#{contents},0)
+	</insert>
+
+
+	<update id="noticeUpdate"
+		parameterType="co.mass.mybatis.notice.service.NoticeVO">
+		update notice set title = #{title}, contents = #{contents} where nid = #{nid}
+	</update>
+
+
+	<delete id="noticeDelete"
+		parameterType="co.mass.mybatis.notice.service.NoticeVO">
+		delete from notice where nid = #{nid}
+	</delete>
+
+</mapper>

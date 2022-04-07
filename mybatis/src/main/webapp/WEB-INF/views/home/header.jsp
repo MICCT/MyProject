@@ -1,0 +1,42 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="CSS/menu.css">
+</head>
+<body>
+	<div align="center">
+		<div>
+			<br />
+		</div>
+		<div>
+			<!-- 메뉴부분 -->
+			<ul>
+				<li><a class="active" href="home.do">홈으로</a></li>
+
+				<c:if test="${empty id }">
+					<li><a href="memberLoginForm.do">로그인</a></li>
+					<li><a href="memberJoinForm.do">회원가입</a></li>
+				</c:if>
+
+				<c:if test="${not empty id }">
+
+					<li><a href="noticeList.do">공지사항</a></li>
+					<li><a href="memberSelect.do">나의정보</a></li>
+
+					<c:if test="${author == 'ADMIN' }"> <!-- 이부분을 이용해서 어드민만 글쓰기 수정하기 해볼수 있게 구현해보자 -->
+						<li><a href="memberList.do">회원목록</a></li>
+					</c:if>
+					<li><a href="memberLogOut.do">로그아웃</a></li>
+				
+				</c:if>
+			
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

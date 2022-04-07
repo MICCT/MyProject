@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<!-- 내가만든 db 파일을 등록하고  db 환경파일을 가져와서 읽어라~ -->
+	<properties resource="db.propertles"></properties>
+
+	<environments default="development">
+		<!-- 개발환경 -->
+		<environment id="development">
+			<transactionManager type="JDBC" /> <!-- 자바기반으로 연결한다 라는뜻 -->
+
+			<!-- Connection Pool 을 사용하겠다 뜻 -->
+			<dataSource type="POOLED">
+				<!-- DB환경파일과 mybatis 의 환경파일 사이에 객체값들이 동일해야한다. driver,url,username,password -->
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+	
+		<!-- mamber-map.xml 의 주소를 확실하게 연결해주어야한다. -->
+		<mapper resource="co/mass/mybatis/member/serviceImpl/Member-map.xml" />
+		<mapper resource="co/mass/mybatis/notice/serviceImpl/notice-map.xml"/>
+	</mappers>
+	
+</configuration>
